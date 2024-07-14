@@ -22,5 +22,6 @@ jobs:
         port: 22
         script: |
           sudo mkdir -p /var/www/html/
+          sudo touch /home/ubuntu/vishnudemo
           sudo chown -R ${{ secrets.EC2_USERNAME }} /var/www/html/
           sudo chmod -R 755 /var/www/html/
