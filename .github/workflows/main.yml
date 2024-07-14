@@ -34,7 +34,7 @@ jobs:
         username:  ${{ secrets.EC2_USERNAME }}
         port: 22
         key: ${{ secrets.EC2_SSH_KEY }}
-        source: ../../index.html
+        source: ./
         target: /var/www/html/
 
     - name: restarting nginx service
