@@ -30,10 +30,10 @@ jobs:
     - name: copy file via ssh key
       uses: appleboy/scp-action@v0.1.7
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
+        host: ${{ secrets.EC2_HOST }}
+        username:  ${{ secrets.EC2_USERNAME }}
         port: 22
-        key: ${{ secrets.KEY }}
+        key: ${{ secrets.EC2_SSH_KEY }}
         source: ../../index.html
         target: /var/www/html/
 
