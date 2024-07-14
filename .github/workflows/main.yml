@@ -25,3 +25,24 @@ jobs:
           sudo touch /home/ubuntu/vishnudemo
           sudo chown -R ${{ secrets.EC2_USERNAME }} /var/www/html/
           sudo chmod -R 755 /var/www/html/
+    
+
+    - name: copy file via ssh key
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        port: 22
+        key: ${{ secrets.KEY }}
+        source: ../../index.html
+        target: /var/www/html/
+
+    - name: restarting nginx service
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        port: 22
+        script: |
+          sudo systemctl restart nginx
