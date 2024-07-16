@@ -1,0 +1,13 @@
+name: learn-github-actions
+run-name: ${{ github.actor }} is learning github actions
+on : [push]
+jobs:
+    check-bats-versions:
+        runs-on: ununtu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                node-version: '20'
+            - run: npn install -g bats
+            - run: bats -v
